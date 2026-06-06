@@ -1,4 +1,4 @@
-# Discord Calendar Bot
+# discal.xyz
 
 Create a public calendar for Google Calendar or your favorite calendar service that shares your Discord events.
 

@@ -16,6 +16,7 @@ async fn main() {
     let app = Router::new()
         .route("/calendar/{id}", get(calendar))
         .route("/", get(index))
+        .route("/policy", get(policy))
         .route("/icon-white.png", get(logo))
         .with_state(tx);
 
@@ -99,6 +100,13 @@ async fn index() -> impl IntoResponse {
     axum::response::Response::builder()
         .status(200)
         .body(include_str!("../index.html").to_string())
+        .expect("should build response")
+}
+
+async fn policy() -> impl IntoResponse {
+    axum::response::Response::builder()
+        .status(200)
+        .body(include_str!("../policy.html").to_string())
         .expect("should build response")
 }
 

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>discal.xyz - Policy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #ffa730;
+    --primary-dark: #ff8c1a;
+    --text: #111827;
+    --text-light: #6b7280;
+    --bg: #ffffff;
+    --section: #fff8ef;
+    --border: #f3e2c5;
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+}
+
+.container {
+    width: min(900px, 92%);
+    margin: 0 auto;
+    padding: 80px 0;
+}
+
+/* Sticky nav */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+    width: min(900px, 92%);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+}
+
+.brand {
+    font-weight: 800;
+    color: var(--text);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-buttons a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: 0.2s ease;
+}
+
+.nav-buttons a:hover {
+    background: var(--section);
+    border-color: var(--primary);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--text-light);
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+}
+
+.card p {
+    color: var(--text-light);
+}
+
+.badge {
+    display: inline-block;
+    background: var(--section);
+    color: var(--primary-dark);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Sticky Navigation -->
+<div class="nav">
+    <div class="nav-inner">
+        <div class="brand">discal.xyz</div>
+
+        <div class="nav-buttons">
+            <a href="#tos">Terms</a>
+            <a href="#privacy">Privacy</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>Policy</h1>
+    <div class="badge">Effective June 6, 2026</div>
+
+    <p class="subtitle">
+        Simple terms and privacy policy for discal.xyz.
+        No tracking. No databases. No stored data.
+    </p>
+
+    <!-- TERMS -->
+    <h2 id="tos">Terms of Service</h2>
+
+    <div class="card">
+        <p>discal.xyz is a Discord bot that generates calendar (iCalendar .ics) feeds from Discord Events.</p>
+    </div>
+
+    <div class="card">
+        <p>You agree to use the service as-is. Features may change or stop at any time without notice.</p>
+    </div>
+
+    <div class="card">
+        <p>No data is stored. We do not use a database, logs, or persistent storage of any kind.</p>
+    </div>
+
+    <div class="card">
+        <p>
+            Calendar feed URLs can be accessed by anyone who has them. Users are responsible for how they share them.
+        </p>
+    </div>
+
+    <div class="card">
+        <p>
+            We are not responsible for missed events, sync issues, or third-party calendar applications.
+        </p>
+    </div>
+
+    <!-- PRIVACY -->
+    <h2 id="privacy">Privacy Policy</h2>
+
+    <div class="card">
+        <p>We do not collect or store personal data.</p>
+    </div>
+
+    <div class="card">
+        <p>
+            This includes Discord IDs, server IDs, messages, events, IP addresses, or any identifying information.
+        </p>
+    </div>
+
+    <div class="card">
+        <p>
+            All processing happens in real time only to generate calendar feeds, then is immediately discarded.
+        </p>
+    </div>
+
+    <div class="card">
+        <p>No logging system or analytics system exists.</p>
+    </div>
+
+    <div class="card">
+        <p>
+            Calendar feed URLs may be accessed by anyone who has them and should be treated as private links.
+        </p>
+    </div>
+
+    <div class="card">
+        <p>
+            Third-party calendar apps (Google, Apple, Outlook, etc.) may apply their own privacy policies.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
