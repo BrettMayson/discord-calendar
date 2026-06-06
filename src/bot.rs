@@ -1,8 +1,6 @@
 use serenity::{
     all::{
-        Command, Context, CreateCommand, CreateInteractionResponse,
-        CreateInteractionResponseMessage, EventHandler, GatewayIntents, GuildId, Interaction,
-        Ready, ScheduledEvent,
+        ActivityData, Command, Context, CreateCommand, CreateInteractionResponse, CreateInteractionResponseMessage, EventHandler, GatewayIntents, GuildId, Interaction, Ready, ScheduledEvent
     },
     async_trait,
 };
@@ -64,7 +62,17 @@ impl EventHandler for Handler {
             && command.data.name == "link"
         {
             let content = format!(
-                "Here's the link to the public calendar: https://discal.mayson.xyz/calendar/{}",
+                r#"
+Here's the link to the public calendar: https://discal.mayson.xyz/calendar/{}
+
+In Google Calendar:
+Other Calendars -> + -> From URL
+
+In Outlook:
+Add calendar -> Subscribe from web -> Paste the link
+
+In Apple Calendar:
+File -> New Calendar Subscription"#,
                 command.guild_id.unwrap_or_default()
             );
             let data = CreateInteractionResponseMessage::new()
@@ -79,6 +87,7 @@ impl EventHandler for Handler {
 
     async fn ready(&self, ctx: Context, ready: Ready) {
         info!("{} is connected!", ready.user.name);
+        ctx.set_activity(Some(ActivityData::custom("use /link")));
         if let Err(e) = Command::create_global_command(
             &ctx.http,
             CreateCommand::new("link").description("Get the link to the public calendar"),
