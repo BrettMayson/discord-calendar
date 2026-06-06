@@ -63,7 +63,7 @@ impl EventHandler for Handler {
         {
             let content = format!(
                 r#"
-Here's the link to the public calendar: https://discal.mayson.xyz/calendar/{}
+Here's the link to the public calendar: https://discal.xyz/calendar/{}
 
 In Google Calendar:
 Other Calendars -> + -> From URL
