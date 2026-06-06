@@ -32,7 +32,6 @@ jobs:
           key: calendar
 
       - run: cargo build --release
-        working-directory: ./bin/calendar
 
       - run: cp target/release/discord-calendar ./discord-calendar
 
