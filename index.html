@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>discal.xyz - Discord Events to Calendar</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #ffa730;
+    --primary-dark: #ff8c1a;
+    --text: #111827;
+    --text-light: #6b7280;
+    --bg: #ffffff;
+    --section: #fff8ef;
+    --border: #f3e2c5;
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    background: var(--bg);
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 26px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: .2s ease;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    border: 2px solid rgba(255,255,255,.3);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,.1);
+}
+
+section {
+    padding: 90px 0;
+}
+
+h1, h2, h3 {
+    line-height: 1.15;
+}
+
+h2 {
+    font-size: 2.4rem;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #ffa730 0%,
+        #ff8c1a 100%
+    );
+    color: white;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.logo {
+    width: 90px;
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 7vw, 5rem);
+    margin-bottom: 24px;
+    font-weight: 800;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    opacity: .95;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.features-grid,
+.steps-grid,
+.use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
+
+.card h3 {
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--text-light);
+}
+
+.steps .card span {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.apps {
+    background: var(--section);
+}
+
+.app-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.app-badge {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.cta {
+    background: var(--section);
+    text-align: center;
+}
+
+.cta h2 {
+    margin-bottom: 20px;
+}
+
+.cta p {
+    max-width: 700px;
+    margin: 0 auto 35px;
+    color: var(--text-light);
+}
+
+.faq {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid #eee;
+    padding: 22px 0;
+}
+
+.faq-item h3 {
+    margin-bottom: 8px;
+}
+
+.faq-item p {
+    color: var(--text-light);
+}
+
+footer {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--text-light);
+    border-top: 1px solid #eee;
+}
+
+footer strong {
+    color: var(--text);
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 70px 0;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 100px 0;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+
+            <img src="icon-white.png" alt="Discal Logo" class="logo">
+
+            <h1>Turn Discord Events Into Real Calendars</h1>
+
+            <p>
+                discal.xyz creates a public calendar feed for your Discord server events.
+                Members can subscribe once and automatically see every event in
+                Google Calendar, Apple Calendar, Outlook, and more.
+            </p>
+
+            <div class="hero-buttons">
+                <a
+                    href="https://discord.com/oauth2/authorize?client_id=1512651387035713616&scope=bot%20applications.commands&permissions=8589934592"
+                    class="btn btn-primary"
+                >
+                    Add to Discord
+                </a>
+
+                <a href="#how-it-works" class="btn btn-secondary">
+                    Learn More
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="steps">
+    <div class="container">
+
+        <h2>How It Works</h2>
+
+        <p class="section-subtitle">
+            Keep using Discord Events exactly as you do today.
+            discal.xyz handles the calendar integration automatically.
+        </p>
+
+        <div class="steps-grid">
+
+            <div class="card">
+                <span>1</span>
+                <h3>Create Events</h3>
+                <p>
+                    Schedule events using Discord's built-in event system.
+                </p>
+            </div>
+
+            <div class="card">
+                <span>2</span>
+                <h3>Get the /link</h3>
+                <p>
+                    Use <code>/link</code> to get your server's calendar feed URL.
+                </p>
+            </div>
+
+            <div class="card">
+                <span>3</span>
+                <h3>Add Calendar</h3>
+                <p>
+                    Members add the calendar once in their calendar app and see all events.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CALENDAR APPS -->
+<section class="apps">
+    <div class="container">
+
+        <h2>Works Everywhere</h2>
+
+        <p class="section-subtitle">
+            discal.xyz uses the standard iCalendar format supported by virtually every modern calendar app.
+        </p>
+
+        <div class="app-list">
+            <div class="app-badge">Google Calendar</div>
+            <div class="app-badge">Apple Calendar</div>
+            <div class="app-badge">Outlook</div>
+            <div class="app-badge">Thunderbird</div>
+            <div class="app-badge">Fantastical</div>
+            <div class="app-badge">ICS Compatible Apps</div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+    <div class="container">
+
+        <h2>Why Communities Use discal.xyz</h2>
+
+        <p class="section-subtitle">
+            Make Discord events visible where people already plan their lives.
+        </p>
+
+        <div class="features-grid">
+
+            <div class="card">
+                <h3>Never Miss Events</h3>
+                <p>
+                    Members see events directly in their personal calendars.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Automatic Updates</h3>
+                <p>
+                    Changes made in Discord are reflected in subscribed calendars.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Universal Compatibility</h3>
+                <p>
+                    Works with any application that supports iCalendar subscriptions.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>One Source of Truth</h3>
+                <p>
+                    Continue managing everything inside Discord. No duplicate work.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- USE CASES -->
+<section class="apps">
+    <div class="container">
+
+        <h2>Perfect For</h2>
+
+        <div class="use-cases-grid">
+
+            <div class="card">
+                <h3>Gaming Communities</h3>
+                <p>
+                    Tournaments, raids, scrims, and community events.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Study Groups</h3>
+                <p>
+                    Classes, sessions, and collaborative learning events.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Creator Communities</h3>
+                <p>
+                    Streams, launches, workshops, and fan events.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section>
+    <div class="container">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq">
+
+            <div class="faq-item">
+                <h3>What format does discal.xyz provide?</h3>
+                <p>
+                    A standard iCalendar (.ics) feed compatible with major calendar applications.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Do I need to recreate events elsewhere?</h3>
+                <p>
+                    No. Continue using Discord Events as normal.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Do calendars update automatically?</h3>
+                <p>
+                    Yes. Subscribers automatically receive event updates through their calendar application.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can non-Discord users subscribe?</h3>
+                <p>
+                    Yes. Anyone with the calendar feed URL can subscribe from a compatible calendar app.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+
+        <h2>Bring Your Discord Events Everywhere</h2>
+
+        <p>
+            Help your community stay organized by making Discord events available
+            in the calendars they already use every day.
+        </p>
+
+        <a
+            href="https://discord.com/oauth2/authorize?client_id=1512651387035713616&scope=bot%20applications.commands&permissions=8589934592"
+            class="btn btn-primary"
+        >
+            Add discal.xyz to Discord
+        </a>
+
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <strong>discal.xyz</strong><br>
+        Discord Events → Calendar Subscriptions
+    </div>
+</footer>
+
+</body>
+</html>

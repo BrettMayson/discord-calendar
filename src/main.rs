@@ -1,6 +1,6 @@
 use std::net::SocketAddr;
 
-use axum::{Router, response::IntoResponse, routing::get};
+use axum::{Router, body::Bytes, response::IntoResponse, routing::get};
 use chrono::Duration;
 use icalendar::{Calendar, Component, Event, EventLike as _};
 use tokio::net::TcpListener;
@@ -14,6 +14,8 @@ async fn main() {
 
     let app = Router::new()
         .route("/calendar/{id}", get(calendar))
+        .route("/", get(index))
+        .route("/icon-white.png", get(logo))
         .with_state(tx);
 
     tokio::spawn(bot::start(rx));
@@ -63,10 +65,10 @@ async fn calendar(
             if let Some(description) = &event.description {
                 ev.description(description);
             }
-            if let Some(metadata) = &event.metadata {
-                if let Some(location) = &metadata.location {
-                    ev.location(location);
-                }
+            if let Some(metadata) = &event.metadata
+                && let Some(location) = &metadata.location
+            {
+                ev.location(location);
             }
             ev.done()
         });
@@ -80,4 +82,15 @@ async fn calendar(
         // .header("Content-Type", "text/calendar")
         .body(body)
         .expect("should build response")
+}
+
+async fn index() -> impl IntoResponse {
+    axum::response::Response::builder()
+        .status(200)
+        .body(include_str!("../index.html").to_string())
+        .expect("should build response")
+}
+
+async fn logo() -> Bytes {
+    Bytes::from_static(include_bytes!("../icon-white.png"))
 }

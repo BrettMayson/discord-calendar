@@ -1,6 +1,8 @@
 use serenity::{
     all::{
-        ActivityData, Command, Context, CreateCommand, CreateInteractionResponse, CreateInteractionResponseMessage, EventHandler, GatewayIntents, GuildId, Interaction, OnlineStatus, Ready, ScheduledEvent
+        ActivityData, Command, Context, CreateCommand, CreateInteractionResponse,
+        CreateInteractionResponseMessage, EventHandler, GatewayIntents, GuildId, Interaction,
+        OnlineStatus, Ready, ScheduledEvent,
     },
     async_trait,
 };
@@ -87,7 +89,10 @@ File -> New Calendar Subscription"#,
 
     async fn ready(&self, ctx: Context, ready: Ready) {
         info!("{} is connected!", ready.user.name);
-        ctx.set_presence(Some(ActivityData::custom("use /link")), OnlineStatus::Online);
+        ctx.set_presence(
+            Some(ActivityData::custom("use /link")),
+            OnlineStatus::Online,
+        );
         if let Err(e) = Command::create_global_command(
             &ctx.http,
             CreateCommand::new("link").description("Get the link to the public calendar"),
