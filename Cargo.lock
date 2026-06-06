@@ -320,7 +320,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "discord-calendar"
+name = "discal-xyz"
 version = "0.1.0"
 dependencies = [
  "axum",

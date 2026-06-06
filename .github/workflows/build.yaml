@@ -33,13 +33,13 @@ jobs:
 
       - run: cargo build --release
 
-      - run: cp target/release/discord-calendar ./discord-calendar
+      - run: cp target/release/discal-xyz ./discal-xyz
 
       - name: Build Image
         run: docker build . -t calendar
 
       - name: Tag Image
-        run: docker tag calendar ghcr.io/brettmayson/discord-calendar:latest
+        run: docker tag calendar ghcr.io/brettmayson/discal-xyz:latest
 
       - name: Push Image
-        run: docker push ghcr.io/brettmayson/discord-calendar:latest
+        run: docker push ghcr.io/brettmayson/discal-xyz:latest

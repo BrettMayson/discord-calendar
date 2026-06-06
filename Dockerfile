@@ -1,8 +1,8 @@
 FROM debian:trixie-slim
 
-COPY ./discord-calendar /app/calendar
+COPY ./discal-xyz /app/bot
 WORKDIR /app
 
 RUN apt-get update && apt-get install libssl-dev ca-certificates -y && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/app/calendar"]
+ENTRYPOINT ["/app/bot"]
