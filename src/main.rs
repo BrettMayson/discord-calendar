@@ -7,6 +7,7 @@ use tokio::net::TcpListener;
 use tracing::debug;
 
 mod bot;
+mod scramble;
 
 #[tokio::main]
 async fn main() {
@@ -31,9 +32,19 @@ async fn main() {
 }
 
 async fn calendar(
-    axum::extract::Path(id): axum::extract::Path<u64>,
+    axum::extract::Path(encoded_id): axum::extract::Path<String>,
     axum::extract::State(tx): axum::extract::State<tokio::sync::mpsc::Sender<bot::BotRequest>>,
 ) -> impl IntoResponse {
+    let id = match scramble::decode(&encoded_id) {
+        Some(id) => id,
+        None => {
+            return axum::response::Response::builder()
+                .status(400)
+                .body("Invalid calendar ID".to_string())
+                .expect("should build response");
+        }
+    };
+
     let mut calendar = Calendar::new();
 
     let (cmd_tx, mut cmd_rx) = tokio::sync::mpsc::channel(1);

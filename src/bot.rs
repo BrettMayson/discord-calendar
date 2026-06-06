@@ -8,6 +8,8 @@ use serenity::{
 };
 use tracing::{error, info};
 
+use crate::scramble;
+
 pub enum BotRequest {
     Calendar(
         u64,
@@ -63,6 +65,8 @@ impl EventHandler for Handler {
         if let Interaction::Command(command) = interaction
             && command.data.name == "link"
         {
+            let guild_id = command.guild_id.unwrap_or_default().get();
+            let encoded_id = scramble::encode(guild_id);
             let content = format!(
                 r#"
 Here's the link to the public calendar: https://discal.xyz/calendar/{}
@@ -75,7 +79,7 @@ Add calendar -> Subscribe from web -> Paste the link
 
 In Apple Calendar:
 File -> New Calendar Subscription"#,
-                command.guild_id.unwrap_or_default()
+                encoded_id
             );
             let data = CreateInteractionResponseMessage::new()
                 .content(content)
